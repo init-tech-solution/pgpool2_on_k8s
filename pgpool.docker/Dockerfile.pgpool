@@ -44,8 +44,8 @@ COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 # Install Pgpool-II
 RUN set -eux \
     \
-    && wget -O /tmp/pgpool.zip "https://github.com/pgpool/pgpool2_on_k8s/archive/refs/heads/master.zip" \
-    && tar -xz /tmp/pgpool.zip -C /tmp/pgpool --strip-components 1 \
+    && wget -O /tmp/pgpool.zip "https://github.com/pgpool/pgpool2/archive/refs/heads/master.zip" \
+    && tar -xzf /tmp/pgpool.zip -C /tmp/pgpool --strip-components 1 \
     && cd /tmp/pgpool \
     && patch -p1 < fix_compile_error.patch \
     && ./configure \
