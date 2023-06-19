@@ -38,7 +38,7 @@ RUN set -eux \
         sed \
         sudo
 
-COPY fix_compile_error.patch /tmp/pgpool/
+COPY fix_compile_error.patch /tmp/pgpool/pgpool2-master/
 COPY entrypoint.sh ${PGPOOL_INSTALL_DIR}/bin/
 COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 
@@ -46,9 +46,8 @@ COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 RUN set -eux \
     \
     && wget -O /tmp/pgpool.zip "https://github.com/pgpool/pgpool2/archive/refs/heads/master.zip" \
-    && unzip /tmp/pgpool.zip -d /tmp/pgpool \
-    && mv /tmp/pgpool/pgpool2-master/* /tmp/pgpool/ \
-    && cd /tmp/pgpool \
+    && unzip /tmp/pgpool.zip -d /tmp/pgpool \    
+    && cd /tmp/pgpool/pgpool2-master/ \
     && patch -p1 < fix_compile_error.patch \
     && ./configure \
         --prefix=${PGPOOL_INSTALL_DIR} \
