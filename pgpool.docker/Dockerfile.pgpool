@@ -16,6 +16,7 @@ RUN set -eux \
     && apk add --no-cache --virtual fetch-dependencies \
         ca-certificates \
         tar \
+        zip \
     \
     && apk add --no-cache --virtual build-dependencies \
         bison \
@@ -45,7 +46,8 @@ COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 RUN set -eux \
     \
     && wget -O /tmp/pgpool.zip "https://github.com/pgpool/pgpool2/archive/refs/heads/master.zip" \
-    && tar -xzf /tmp/pgpool.zip -C /tmp/pgpool --strip-components 1 \
+    && unzip /tmp/pgpool.zip -d /tmp/pgpool \
+    && mv /tmp/pgpool/pgpool2-master/* /tmp/pgpool/ \
     && cd /tmp/pgpool \
     && patch -p1 < fix_compile_error.patch \
     && ./configure \
