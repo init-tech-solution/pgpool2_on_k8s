@@ -39,6 +39,7 @@ RUN set -eux \
         sudo
 
 COPY fix_compile_error.patch /tmp/pgpool/pgpool2-master/
+COPY configure /tmp/pgpool/pgpool2-master/
 COPY entrypoint.sh ${PGPOOL_INSTALL_DIR}/bin/
 COPY start.sh ${PGPOOL_INSTALL_DIR}/bin/
 
