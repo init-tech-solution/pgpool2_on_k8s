@@ -27,6 +27,8 @@ RUN set -eux \
         libbsd-doc \
         linux-headers \
         autoconf \
+        automake \
+        libtool \
         make \
         patch \
         openssl-dev \
