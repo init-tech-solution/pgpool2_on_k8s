@@ -59,9 +59,8 @@ RUN set -eux \
         --prefix=${PGPOOL_INSTALL_DIR} \
         --with-openssl
 
-RUN make -j "$(nproc)" \
-    && make install \
-    \
+RUN cd /tmp/pgpool/pgpool2-master/ && make -j "$(nproc)" \
+    && make install \    
     && mkdir /var/run/pgpool \
     && mkdir /var/run/postgresql \
     && chown -R postgres:postgres /var/run/pgpool /var/run/postgresql ${PGPOOL_INSTALL_DIR} \
