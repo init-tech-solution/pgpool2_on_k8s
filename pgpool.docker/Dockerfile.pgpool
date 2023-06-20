@@ -26,6 +26,7 @@ RUN set -eux \
         g++ \
         libbsd-doc \
         linux-headers \
+        autoconf \
         make \
         patch \
         openssl-dev \
@@ -50,6 +51,7 @@ RUN set -eux \
     && unzip /tmp/pgpool.zip -d /tmp/pgpool \    
     && cd /tmp/pgpool/pgpool2-master/ \
     && patch -p1 < fix_compile_error.patch \
+    && autoconf \
     && ./configure \
         --prefix=${PGPOOL_INSTALL_DIR} \
         --with-openssl \
