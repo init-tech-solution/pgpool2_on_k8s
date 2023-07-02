@@ -10,7 +10,9 @@ RUN set -ex; \
     addgroup -g 70 -S postgres; \
     adduser -u 70 -S -D -G postgres -H -h /var/lib/pgsql -s /bin/sh postgres; \
     mkdir -p /var/lib/pgsql; \
-    chown -R postgres:postgres /var/lib/pgsql
+    mkdir -p /var/log/pgpool; \
+    chown -R postgres:postgres /var/lib/pgsql; \
+    chown -R postgres:postgres /var/log/pgpool;
 
 # Install packages
 RUN set -eux \
